@@ -164,7 +164,7 @@ class Process implements Runnable {
         return creationTime;
     }
     // get for fields Feature 3
-    public long getTotalWaitintTime() {
+    public long getTotalWaitingTime() {
         return totalWaitingTime;
     }
     // get for fields Feature 3
@@ -172,7 +172,7 @@ class Process implements Runnable {
         return lastReadyQueueTime;
     }
     // Calc waiting time Feature 3
-    public void caldWaitintTime(){
+    public void calcWaitingTime(){
         
         this.totalWaitingTime += System.currentTimeMillis() - lastReadyQueueTime;
     }
@@ -187,12 +187,12 @@ class Process implements Runnable {
     }
 }
 
-public class SchedulerSimulation {
+     class SchedulerSimulation {
     // context switch static counter Feature 2
     private static int contextSwitchCounter = 0;
 
     // list to store all completed process Feature 3
-    priavte static List<Process> finishProcess = new ArrayList<>;
+    private static List<Process> finishProcess = new ArrayList<>();
 
     
     public static void main(String[] args) {
@@ -328,7 +328,7 @@ public class SchedulerSimulation {
                     finishProcess.add(process);
                 }
             }
-        }
+        
         
         // End of the scheduler simulation
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
@@ -343,7 +343,7 @@ public class SchedulerSimulation {
                           Colors.RESET + "\n");
 
         // total context switches Feature 2
-        System.out.println(Colors.RED + " total context switches = " + Colors.WHITE + contextSwitchCoutner + Colors.RESET );
+        System.out.println(Colors.RED + " total context switches = " + Colors.WHITE + contextSwitchCounter + Colors.RESET );
 
         // print Feature 3
         for (Process pp : finishProcess){
