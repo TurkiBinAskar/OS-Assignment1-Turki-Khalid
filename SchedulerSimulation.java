@@ -33,6 +33,11 @@ class Process implements Runnable {
     // added the priority Feature 1
     private int priority;
 
+    // fields for track waiting time Feature 3
+    private long creationTime;
+    private long totalWaitingTime;
+    private long lastReadyQueueTime;
+
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum , int priority) {
         this.name = name;
@@ -40,11 +45,19 @@ class Process implements Runnable {
         this.timeQuantum = timeQuantum;
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
         this.priority = priority; //initialize priority Feature 1
+
+        // initialize fields of Feature 3
+        this.creationTime = System.currentTimeMillis();
+        this.totalWaitingTime = 0;
+        this.lastReadyQueueTime = this.creationTime;
     }
 
     // This method will be called when the thread for this process is started
     @Override
     public void run() {
+        // calc the waiting time when the process start Feature 3
+        this.calcWaitingTime();
+        
         // Simulate running for either the time quantum or remaining time, whichever is smaller
         int runTime = Math.min(timeQuantum, remainingTime); // Run for the smaller of the two times
         
@@ -146,6 +159,28 @@ class Process implements Runnable {
         return priority;
     }
 
+    // get for fields Feature 3
+    public long getcreationTime() {
+        return creationTime;
+    }
+    // get for fields Feature 3
+    public long getTotalWaitintTime() {
+        return totalWaitingTime;
+    }
+    // get for fields Feature 3
+    public long getLastReadyQueueTime() {
+        return lastReadyQueueTime;
+    }
+    // Calc waiting time Feature 3
+    public void caldWaitintTime(){
+        
+        this.totalWaitingTime += System.currentTimeMillis() - lastReadyQueueTime;
+    }
+    // this method run if the process re enter the ready queue Feature 3
+    public void EnterQueue() {
+        this.lastReadyQueueTime = System.currentTimeMillis();
+    }
+
     // Check if the process has finished (i.e., no remaining time)
     public boolean isFinished() {
         return remainingTime <= 0;
@@ -155,6 +190,9 @@ class Process implements Runnable {
 public class SchedulerSimulation {
     // context switch static counter Feature 2
     private static int contextSwitchCounter = 0;
+
+    // list to store all completed process Feature 3
+    priavte static List<Process> finishProcess = new ArrayList<>;
 
     
     public static void main(String[] args) {
@@ -215,6 +253,9 @@ public class SchedulerSimulation {
             // Create a new process object with a unique name, burst time, and the defined time quantum
             // add the priority to the parameter Feature 1
             Process process = new Process("P" + i, burstTime, timeQuantum , priority);
+
+            // store to keep track of the process Feature 3
+            finishProcess.add(process);
             
             // Add the process to the ready queue and the map
             addProcessToQueue(process, processQueue, processMap);
@@ -271,7 +312,7 @@ public class SchedulerSimulation {
             Process process = processMap.get(currentThread);
             
             // Check if the process is not finished
-            if (!process.isFinished()) {
+            if (!process.isFinished())    
                 // If the process still has remaining time, check if there are more processes in queue
                 if (!processQueue.isEmpty()) {
                     // Re-enqueue the process to give it another chance to run in the next round
@@ -282,6 +323,9 @@ public class SchedulerSimulation {
                                       Colors.RESET + Colors.YELLOW + " is the last process → running to completion" + 
                                       Colors.RESET);
                     process.runToCompletion(); // Run until the process completes
+
+                    // add to complete process Feature 3
+                    finishProcess.add(process);
                 }
             }
         }
@@ -298,13 +342,21 @@ public class SchedulerSimulation {
                           "╚════════════════════════════════════════════════════════════════════════════════╝" + 
                           Colors.RESET + "\n");
 
-        // total context switches
+        // total context switches Feature 2
         System.out.println(Colors.RED + " total context switches = " + Colors.WHITE + contextSwitchCoutner + Colors.RESET );
+
+        // print Feature 3
+        for (Process pp : finishProcess){
+            System.out.println(" name : " + pp.getName() +  "       Burst Time : " + pp.getBurstTime() + "       Waiting time : " + pp.getTotalWaitintTime()  );
+        }
     }
     
     // Method to add a process to the queue and map, while printing a "ready" message
     public static void addProcessToQueue(Process process, Queue<Thread> processQueue, 
                                         Map<Thread, Process> processMap) {
+
+        // is a process re enter the queue Feature 3
+        process.EnterQueue();
         // Create a new thread to run the process
         Thread thread = new Thread(process);
         
