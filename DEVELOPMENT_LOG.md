@@ -32,68 +32,70 @@ Document your development process as you work on the assignment. Add entries sho
 
 ## Your Development Log:
 
-### Entry 1 - [Date and Time]
-**What I did**: 
+### Entry 1 - 28 march on 7 am
+**What I did**: register in github 
 
-**Details**: 
+**Details**: mad ean account in github with my universty email 
 
-**Challenges**: 
+**Challenges**: none
 
-**Solution**: 
+**Solution**: --
 
-**Time spent**: 
-
----
-
-### Entry 2 - [Date and Time]
-**What I did**: 
-
-**Details**: 
-
-**Challenges**: 
-
-**Solution**: 
-
-**Time spent**: 
+**Time spent**: like 15 mins
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**: 
+### Entry 2 - 28 march on 11 am
+**What I did**: Feature 1 process priority
 
-**Details**: 
+**Details**: make a priority for each process 
 
-**Challenges**: 
+**Challenges**: some errors when i try to print the priority
 
-**Solution**: 
+**Solution**: it was a spelling error after all 
 
-**Time spent**: 
-
----
-
-### Entry 4 - [Date and Time]
-**What I did**: 
-
-**Details**: 
-
-**Challenges**: 
-
-**Solution**: 
-
-**Time spent**: 
+**Time spent**: 1.5 hour
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**: 
+### Entry 3 - Feature 2 Context Switch Counter
 
-**Details**: 
+**What I did**: making a context switch 
 
-**Challenges**: 
+**Details**:  making a context switch to count evrey process thats enter the cpu
 
-**Solution**: 
+**Challenges**: none
 
-**Time spent**: 
+**Solution**: --
+
+**Time spent**: 1.5 hour
+
+---
+
+### Entry 4 - Feature 3 Calc The waiting time
+
+**What I did**: calc the waiting time 
+
+**Details**: do some varbils and methods to count the witing time for each process enter the ready queue
+
+**Challenges**:  print the feature 3 the  waiting time 
+
+**Solution**: feature 3  put a ArrayList in class run to count them for the outpt print .
+
+**Time spent**: 2.5 hours
+
+---
+
+### Entry 5 - Fix spelling errors 
+**What I did**: some errors pop out to me ones i run rhe code 
+
+**Details**: a lot of spellings errore cause am writing on github directly
+
+**Challenges**: where the excact error at
+
+**Solution**: down load the evrery time to netbeans and check
+
+**Time spent**: 2 hours
 
 ---
 
@@ -112,10 +114,10 @@ Document your development process as you work on the assignment. Add entries sho
 
 ## Summary
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: almos 8 hours
 
-**Most challenging part**: 
+**Most challenging part**: Feature 3
 
-**Most interesting learning**: 
+**Most interesting learning**: Counting the waiting time 
 
-**What I would do differently next time**: 
+**What I would do differently next time**:((((((( use VS code)))))))))
